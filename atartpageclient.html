@@ -1,0 +1,111 @@
+
+{% load staticfiles %}
+{% load mathfilters %}
+
+<html>
+
+    <head>
+        <title> Start Page </title>
+
+        <link rel="stylesheet" href=" {% static 'css/index.css' %} ">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <script src="{% static 'js/jquery.js' %}" ></script>
+        <script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
+        <script src="{% static 'js/index.js' %}" ></script>
+
+    </head>
+
+    <body>
+
+        <div class="header">  
+          <!-- <br> <br> -->
+          <div id="logo">
+            <a>
+              <img src="static/img/logo.png" alt="logo"  />
+              <div class="caption">Plato eLearning</div>
+            </a>
+          </div>
+          <!-- <img src="static/img/logo.png" alt="logo" /> -->
+          <h1><I> Welcome to Search-Bot  </I></h1>
+        </div>
+
+      <div class="logout">
+        <br>
+        <a href="{% url 'logout' %}">logout</a>
+      </div>
+
+        <div class="middle_parter">
+
+        	
+        {% if parter == "part1" %}
+
+              <form enctype="multipart/form-data" method="post" >
+                  {% csrf_token %}
+                  <br><br>
+                  <br><br>
+                  <p> <h4>Finished adding the files. Start asking questions!</h4>
+                  <br><br>
+                  <input type="text" name="parters" value="2" style="display:none">
+                  <button> Ask question </button> </p>
+              </form>              
+
+              <!-- <br>
+              <p> Finished adding the files. Start asking queestions!
+              <br><br>
+              <button> Ask Questions </button> </p> -->
+
+
+        {% elif parter == "part2" %}
+
+            <p> <font size="+1">Please type question in box below. </font></p>
+            <form enctype="multipart/form-data" method="post" >
+              {% csrf_token %}
+              <br><br>
+              <input id="question_box" class="asker" type="text" name="texter">
+              <input type="text" name="parters" value="2" style="display:none">
+              <!-- <input type="button" onclick="submit()" value="Reset form"> -->
+              <!-- <input type="reset" value="Reset"> -->
+              <br><br>
+              <!-- <button> Get Answer </button> -->
+              <!-- <button type="submit" value="Submit">Get Answer</button> -->
+              <button type="reset" value="Reset">Reset</button>
+              <br>
+            </form>
+
+          <!-- <button id="pdf2">Get Answer</button> -->
+          <button id="pdf2">PDF-Answer1</button>
+          <!-- <button id="pdfanswer1">PDF-Answer1</button> -->
+          <button id="pdfanswer2">PDF-Answer2</button>
+          <button id="pdfanswer3">PDF-Answer3</button>
+          <!-- <button id="something"> Bring PDF </button> </p> -->
+          <!-- <button id="full_document"> Full Document </button> -->
+          <canvas id="the-canvas"></canvas>
+          <div id="container" style="width:120%"></div>
+
+<!-- 
+            <div class="question_part">
+
+              {% for one in list %}
+
+                  {% if forloop.counter|mod:2 != 0 %}
+
+                    <li class="client"> {{one}} </li>
+
+                  {% else %}
+
+                    <li class="machine"> {{one}} </li>
+
+                  {% endif %}
+
+              {% endfor %}
+
+            </div>
+
+
+       {% endif %} -->
+
+      </div>
+    </body>
+
+</html>
